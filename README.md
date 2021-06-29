@@ -1,61 +1,118 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+## Laravel Installation
+Via Composer Create-Project<br/>
+$ composer create-project --prefer-dist laravel/laravel:^7.0 blog
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>
+update .env file 
 
-## About Laravel
+php artisan key:generate
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+php artisan serve
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Database migration 
+Dabase Migration 
 
-## Learning Laravel
+//brew services start mysql<br/>
+brew services stop mysql
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+//Enter into mysql<br/> 
+mysql -uroot -p 
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+//Create a new database<br/>
+CREATE DATABASE db_name;
 
-## Laravel Sponsors
+//Show all the databases<br/> 
+SHOW DATABASES;
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+clear & <exit> to logout
 
-### Premium Partners
+//Add a new table<br/> 
+php artisan make: migration create_posts_table --create="posts"
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[OP.GG](https://op.gg)**
+//Add to existing table<br/> 
+php artisan make:migration add_is_admin_column_to_posts_tables - -table=“posts”
 
-## Contributing
+Then, edit the migration file and run the migration command
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+//Undo the last migration<br/>
+php artisan migrate:rollback
 
-## Code of Conduct
+//Reset all migrations<br/> 
+php artisan migrate:reset
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+//Rollback and migrate<br/> 
+php artisan migrate:refresh
 
-## Security Vulnerabilities
+//Check the migration status<br/> 
+php artisan migrate:status 
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+## Install Bootstrap 4 on Laravel
+$ composer require laravel/ui<br/>
+After successfully installing the package, we install Bootstrap 4 in our application using the following command:
 
-## License
+$ php artisan ui bootstrap<br/>
+You can also install the auth scaffoldings using the following command instead:
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+$ php artisan ui bootstrap --auth<br/>
+Finally, you need to install the bootstrap package and the related frontend dependencies such as jquery from npm using the following command:
+
+$ npm install
+
+//To build css and js<br/>
+$ npm run development
+
+//To build runtime<br/> 
+$ npm run watch 
+
+## Install Laravel Collective
+Begin by installing this package through Composer. Edit your project's composer.json file to require laravelcollective/html.
+
+$ composer require laravelcollective/html
+
+### Install ckeditor
+$ composer require ckeditor/ckeditor
+
+Then copy ckeditor folder in vendor/ckeditor to public folder
+And add this script<br/>
+<script src="{{ asset('ckeditor/ckeditor.js')}}"></script><br/>
+<script>CKEDITOR.replace('article-ckeditor');</script>
+
+## Install Laravel Auth ##
+php artisan make:auth
+
+## Mac environment setup 
+Brew packages -> usr/local/Celler<br/>
+Package information -> usr/local/opt
+
+brew list<br/> 
+brew search <php><br/>
+brew list<br/> 
+brew install <php/mysql><br/>
+brew install node<br/> 
+brew install composer<br/>
+brew info composer<br/>
+
+//Remove composer<br/> 
+rm usr/local/bin/composer
+
+//Paths<br/>
+Sudo nano etc/paths
+
+//Run server<br/>
+php artisan serve -port=1234<br/>
+CTR + C to stop 
+
+//Install valet<br/>
+composer global require larval/valet
+
+//Register the current working (or specified) directory with Valet<br/>
+valet park
+
+//Link the current working directory to Valet<br/>
+valet link
+
+//Display all of the registered Valet links<br/>
+valet links 
+
+Remove the current working (or specified) directory from Valet's //list of paths<br/>
+valet forget
