@@ -18,6 +18,7 @@
     <script src="js/swiper.min.js"></script>
     <script src="{{ asset('js/swiper.min.js') }}" defer></script>
 
+    {{-- Homepage custom JS --}}
     <script>
         $(window).scroll(function() {
             // 100 = The point you would like to fade the nav in.
@@ -33,6 +34,76 @@
             };
         });
     </script>
-</body>
 
+    {{-- Listing page custom JS --}}
+    <script>
+        $(".map-icon").click(function() {
+            $(".map-fix").toggle();
+        });
+    </script>
+    <script>
+        // Want to customize colors? go to snazzymaps.com
+        function myMap() {
+            var maplat = $('#map').data('lat');
+            var maplon = $('#map').data('lon');
+            var mapzoom = $('#map').data('zoom');
+            // Styles a map in night mode.
+            var map = new google.maps.Map(document.getElementById('map'), {
+                center: {
+                    lat: maplat,
+                    lng: maplon
+                },
+                zoom: mapzoom,
+                scrollwheel: false
+            });
+            var marker = new google.maps.Marker({
+                position: {
+                    lat: maplat,
+                    lng: maplon
+                },
+                map: map,
+                title: 'We are here!'
+            });
+        }
+    </script>
+    <!-- Map JS (Please change the API key below. Read documentation for more info) -->
+    <script src="https://maps.googleapis.com/maps/api/js?callback=myMap&key=AIzaSyDMTUkJAmi1ahsx9uCGSgmcSmqDTBF9ygg"></script>
+
+    {{-- Detail page custom JS --}}
+    <script>
+        var swiper = new Swiper('.swiper-container', {
+            slidesPerView: 3,
+            slidesPerGroup: 3,
+            loop: true,
+            loopFillGroupWithBlank: true,
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+        });
+    </script>
+    <script>
+        if ($('.image-link').length) {
+            $('.image-link').magnificPopup({
+                type: 'image',
+                gallery: {
+                    enabled: true
+                }
+            });
+        }
+        if ($('.image-link2').length) {
+            $('.image-link2').magnificPopup({
+                type: 'image',
+                gallery: {
+                    enabled: true
+                }
+            });
+        }
+    </script>
+
+</body>
 </html>
