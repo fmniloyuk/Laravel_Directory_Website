@@ -21,6 +21,16 @@ Route::get('/start', function () {
     return view('homepage');
 });
 
+Route::get('/listing', function () {
+    return view('listing');
+});
+
+Route::get('/detail', function () {
+    return view('detail');
+});
+
+
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
