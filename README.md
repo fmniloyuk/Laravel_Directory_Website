@@ -116,3 +116,38 @@ valet links
 
 Remove the current working (or specified) directory from Valet's //list of paths<br/>
 valet forget
+
+
+## Docker installation on Ubuntu 18
+ sudo apt-get update
+
+sudo apt install docker.io
+sudo systemctl start docker
+sudo systemctl enable docker
+
+### Deployment of a Laravel application
+git clone repo
+docker-compose up -d
+docker exec -it 83ad4ef2b5dc bash
+
+....
+
+DB_CONNECTION=mysql
+DB_HOST=db
+DB_PORT=3306
+DB_DATABASE=laraapp_db
+DB_USERNAME=root
+DB_PASSWORD=
+
+....
+
+### Install Vim and Nano inside docker
+sudo docker exec -it be8aa338d656 bash
+
+apt-get update
+apt-get install vim nano
+
+### File permission fix
+sudo chmod o+w ./storage/ -R
+
+
